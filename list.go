@@ -106,3 +106,14 @@ func (b *BufferedList) Read(data []byte) int {
 	}
 	return index
 }
+
+func (b *BufferedList) IsEmpty() bool {
+	return b.head == nil
+}
+
+func (b *BufferedList) Free() {
+	for b.head != nil {
+		popNode(b.head)
+		b.head = b.head.next
+	}
+}
