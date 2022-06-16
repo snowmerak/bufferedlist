@@ -1,3 +1,3 @@
-module github.com/snowmerak/bufferlist
+module github.com/snowmerak/bufferedlist
 
 go 1.18
