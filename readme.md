@@ -22,17 +22,23 @@ import (
 )
 
 func main() {
+    // create new buffered list
 	list := bufferedlist.New()
+    // Free is put all node to pool
+    defer list.Free()
 
 	b := make([]byte, os.Getpagesize()*2/3)
 	for i := 0; i < 2; i++ {
 		rand.Read(b[:])
+        // append byte buffer to buffered list
 		list.Append(b)
 	}
 
 	length := 0
 	r := [1000]byte{}
+    // check list is empty
 	for !list.IsEmpty() {
+        // read byte buffer from buffered list
 		n := list.Read(r[:])
 		length += n
 		fmt.Printf("%d: %v\n", n, r[:n])
