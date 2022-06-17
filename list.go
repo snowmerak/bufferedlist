@@ -93,8 +93,9 @@ func (b *BufferedList) Read(data []byte) int {
 		readLen, isEmpty := b.head.read(data[index:])
 		index += readLen
 		if isEmpty {
-			popNode(b.head)
+			t := b.head
 			b.head = b.head.next
+			popNode(t)
 			if b.head == nil {
 				b.tail = nil
 				break
